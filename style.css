@@ -1,0 +1,81 @@
+* {
+	border: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+:root {
+      --hue: 240; 
+      --bg: rgb(230, 230, 250); 
+      --fg: rgb(255, 255, 255); 
+      --radio-off: rgb(230, 230, 250); 
+      --radio-on: rgb(200, 100, 255); 
+      --radio-down: rgb(255, 174, 54); 
+      --trans-dur: 0.3s;
+      --trans-timing: cubic-bezier(0.65, 0, 0.35, 1);
+	font-size: calc(16px + (24 - 16) * (100vw - 320px) / (2560 - 320));
+}
+body,
+input {
+	color: var(--fg);
+	font: 1em/1.5 "DM Sans", sans-serif;
+	transition:
+		background-color var(--trans-dur),
+		color var(--trans-dur);
+}
+body {
+	background-color: var(--bg);
+	display: flex;
+	height: 100vh;
+}
+form {
+	background-color: rgb(230, 230, 250); 
+	border-radius: 0.75em;
+	margin: auto;
+	padding: 0.75em;
+	min-width: 15em;
+	transition: background-color var(--trans-dur);
+}
+label,
+input[type="radio"] {
+	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
+}
+label {
+	display: flex;
+	align-items: center;
+	padding: 0.75em 0.75em 0.75em 3em;
+	position: relative;
+}
+input[type="radio"] {
+	background-color: var(--radio-off);
+	border-radius: 0.75em;
+	outline: transparent;
+	position: absolute;
+	bottom: 0.75em;
+	left: 0.75em;
+	width: 1.5em;
+	height: 1.5em;
+	transition: background-color var(--trans-dur) var(--trans-timing);
+	-webkit-appearance: none;
+	appearance: none;
+}
+input[type="radio"]:checked {
+	background-color: var(--radio-on);
+}
+input[type="radio"]:not(:checked):active {
+	background-color: var(--radio-down);
+}
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: rgb(50, 50, 70); 
+		--fg: rgb(230, 230, 250); 
+		--radio-off: rgb(70, 70, 100);
+		--radio-on: rgb(200, 100, 255); 
+		--radio-down: rgb(100, 100, 150); 
+	}
+	form {
+		background-color: rgb(70, 70, 100); 
+	}
+}
